@@ -96,6 +96,7 @@ int main(void)
   MX_USART2_UART_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
+  //Start reading ADC w/ DMA
   HAL_ADC_Start_DMA(&hadc1, ADCData, 4);
   /* USER CODE END 2 */
 
@@ -103,6 +104,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  //simulate Main Task
+	  HAL_Delay(100000000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -316,6 +319,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+//Toggle LED With Interrupt
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if(GPIO_Pin == GPIO_PIN_13)
@@ -358,4 +362,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
